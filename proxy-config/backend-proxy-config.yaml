@@ -1,0 +1,14 @@
+proxy:
+  endpoints:
+    '/test':
+      target: https://fake-json-api.mock.beeceptor.com
+      pathRewrite:
+        /api/proxy/test/?: /
+    '/harness':
+      target: https://app.harness.io
+      pathRewrite:
+        /api/proxy/harness/?: /
+      headers:
+        x-api-key: ${Your_Harness_Secret}
+        Content-Type: application/json
+        Harness-Account: YOUR-ACCOUNT-ID
