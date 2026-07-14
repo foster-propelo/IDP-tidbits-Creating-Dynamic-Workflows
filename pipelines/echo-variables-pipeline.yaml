@@ -1,0 +1,66 @@
+pipeline:
+  name: IDP-tidbits-Creating-Dynamic-Workflows
+  identifier: IDPtidbitsCreatingDynamicWorkflows
+  projectIdentifier: YOUR-PROJECT-ID
+  orgIdentifier: YOUR-ORG-ID
+  tags: {}
+  stages:
+    - stage:
+        name: TidBits
+        identifier: TidBits
+        description: ""
+        type: IDP
+        spec:
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Echo Variables From Workflow
+                  identifier: Echo_Variables_From_Workflow
+                  spec:
+                    shell: Python
+                    command: |-
+                      variables = {
+                          "projectId": "<+pipeline.variables.projectId>",
+                          "orgID": "<+pipeline.variables.orgId>",
+                          "userGroup": "<+pipeline.variables.userGroup>",
+                          "Harness_API_Picker": "<+pipeline.variables.Harness_API_Picker>",
+                          "Generic_API_Picker": "<+pipeline.variables.Generic_API_Picker>",
+                      }
+
+                      for name, value in variables.items():
+                          if value.strip():
+                              print(f"{name}: {value}")
+        tags: {}
+  variables:
+    - name: projectId
+      type: String
+      description: ""
+      required: false
+      value: <+input>
+    - name: orgId
+      type: String
+      description: ""
+      required: false
+      value: <+input>
+    - name: userGroup
+      type: String
+      description: ""
+      required: false
+      value: <+input>
+    - name: Harness_API_Picker
+      type: String
+      description: ""
+      required: false
+      value: <+input>
+    - name: Generic_API_Picker
+      type: String
+      description: ""
+      required: false
+      value: <+input>
