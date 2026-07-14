@@ -1,0 +1,49 @@
+apiVersion: harness.io/v1
+kind: Workflow
+name: Built In Harness Pickers
+identifier: Built_In_Harness_Pickers
+type: workflow
+owner: user:account/foster.clark@harness.io
+metadata: {}
+spec:
+  output:
+    links:
+      - title: Pipeline Details
+        url: ${{ steps.trigger.output.PipelineUrl }}
+  lifecycle: demo
+  parameters:
+    - title: Harness Built In Pickers
+      properties:
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken
+        projectId:
+          title: Project Identifier
+          description: Fetched live from your Harness account
+          type: string
+          ui:field: HarnessProjectPicker
+        orgId:
+          title: Org Identifier
+          description: Auto-populates based on the project you picked
+          type: string
+          ui:field: HarnessAutoOrgPicker
+        userGroup:
+          title: User Group
+          description: Only shows groups you belong to
+          type: string
+          ui:field: HarnessUserGroupPicker
+          ui:options:
+            filterByUserMembership: true
+  steps:
+    - id: trigger
+      name: Creating your appication
+      action: trigger:harness-custom-pipeline
+      input:
+        url: YOUR-PIPELINE-URL-HERE
+        inputset:
+          projectId: ${{ parameters.projectId }}
+          orgID: ${{ parameters.orgID }}
+          userGroup: ${{ parameters.userGroup }}
+        apikey: ${{ parameters.token }}
