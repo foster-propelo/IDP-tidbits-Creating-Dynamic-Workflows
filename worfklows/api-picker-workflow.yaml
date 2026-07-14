@@ -13,28 +13,38 @@ spec:
         url: ${{ steps.trigger.output.PipelineUrl }}
   lifecycle: test
   parameters:
-    - title: Pick from the API!
+    - title: Select Dropdown From API's
       properties:
         token:
           title: Harness Token
           type: string
           ui:widget: password
           ui:field: HarnessAuthToken
-        API_Picker:
+        Generic_API_Picker:
           type: string
           ui:field: SelectFieldFromApi
           ui:options:
-            title: API Picker
+            title: Generic API Picker
             description: Pick one of the Selections
             placeholder: Pick one of the Selections
             path: proxy/test/users
             valueSelector: name
+        Harness_API_Picker:
+          type: string
+          ui:field: SelectFieldFromApi
+          ui:options:
+            title: Harness API Picker
+            description: Pick a Harness Entity using an API!
+            placeholder: Pick one!
+            path: proxy/harness/v1/entities?limit=10
+            valueSelector: identifier
   steps:
     - id: trigger
       name: Creating your appication
       action: trigger:harness-custom-pipeline
       input:
-        url: {YOUR_PIPELINE_URL_HERE}
+        url: YOUR-HARNESS-PIPELINE-URL
         inputset:
-          service_name: ${{ parameters.API_Picker }}
+          Harness_API_Picker: ${{ parameters.Harness_API_Picker }}
+          Generic_API_Picker: ${{ parameters.Generic_API_Picker }}
         apikey: ${{ parameters.token }}
