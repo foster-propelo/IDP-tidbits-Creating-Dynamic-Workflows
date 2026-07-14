@@ -1,0 +1,40 @@
+apiVersion: harness.io/v1
+kind: Workflow
+name: API Dropdown Selection
+identifier: API_Verify
+type: workflow
+owner: user:foster.clark@harness.io
+metadata:
+  annotations: {}
+spec:
+  output:
+    links:
+      - title: Pipeline Details
+        url: ${{ steps.trigger.output.PipelineUrl }}
+  lifecycle: test
+  parameters:
+    - title: Pick from the API!
+      properties:
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken
+        API_Picker:
+          type: string
+          ui:field: SelectFieldFromApi
+          ui:options:
+            title: API Picker
+            description: Pick one of the Selections
+            placeholder: Pick one of the Selections
+            path: proxy/test/users
+            valueSelector: name
+  steps:
+    - id: trigger
+      name: Creating your appication
+      action: trigger:harness-custom-pipeline
+      input:
+        url: {YOUR_PIPELINE_URL_HERE}
+        inputset:
+          service_name: ${{ parameters.API_Picker }}
+        apikey: ${{ parameters.token }}
