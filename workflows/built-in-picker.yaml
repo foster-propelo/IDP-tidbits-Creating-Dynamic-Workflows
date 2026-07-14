@@ -41,9 +41,8 @@ spec:
       name: Creating your appication
       action: trigger:harness-custom-pipeline
       input:
-        url: YOUR-PIPELINE-URL-HERE
         inputset:
           projectId: ${{ parameters.projectId }}
-          orgID: ${{ parameters.orgID }}
+          orgId: ${{ parameters.orgId }}
           userGroup: ${{ parameters.userGroup }}
         apikey: ${{ parameters.token }}
