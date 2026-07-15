@@ -16,19 +16,6 @@ Reference docs:
 - [Dynamic Workflow Picker based on API Response](https://developer.harness.io/3k-docs/internal-developer-portal/flows/workflows-tutorials/dynamic-picker/) — the API picker mechanics, backend proxy setup, and response-parsing options (`valueSelector`, `labelSelector`, `arraySelector`).
 - [Configuring Workflow Inputs — Harness-specific UI Pickers](https://developer.harness.io/3k-docs/internal-developer-portal/flows/create-workflow/flows-input#harness-specific-ui-pickers) — the full list of built-in pickers (`HarnessOrgPicker`, `HarnessProjectPicker`, `HarnessAutoOrgPicker`, `HarnessUserGroupPicker`, `HarnessOwnerPicker`, plus the catalog-driven `EntityFieldPicker`/`EntityPicker`).
 
-## Repo Structure
-
-```
-IDP-tidbits-Creating-Dynamic-Workflows/
-├── README.md
-├── proxy-config/
-│   └── backend-proxy-config.yaml     # Backend Proxy setup - powers both API pickers below
-├── workflows/
-│   ├── api-picker-workflow.yaml      # "API Dropdown Selection" - two API-backed pickers
-│   └── built-in-picker.yaml          # "Built In Harness Pickers" - zero-config pickers
-└── pipelines/
-    └── echo-variables-pipeline.yaml  # Echoes whatever the picker(s) passed in
-```
 
 ## Prerequisites
 
