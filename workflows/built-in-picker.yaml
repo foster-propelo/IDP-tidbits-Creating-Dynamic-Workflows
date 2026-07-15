@@ -3,7 +3,7 @@ kind: Workflow
 name: Built In Harness Pickers
 identifier: Built_In_Harness_Pickers
 type: workflow
-owner: user:account/foster.clark@harness.io
+owner: user:{YOUR-NAME-HERE}
 metadata: {}
 spec:
   output:
