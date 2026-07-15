@@ -3,7 +3,7 @@ kind: Workflow
 name: API Dropdown Selection
 identifier: API_Dropdown_Selection
 type: workflow
-owner: user:foster.clark@harness.io
+owner: user:{YOUR-NAME-HERE}
 metadata:
   annotations: {}
 spec:
