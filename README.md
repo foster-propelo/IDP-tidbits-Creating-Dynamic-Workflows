@@ -71,17 +71,7 @@ or push it through your Git provider if using Git Experience):
   `HarnessAutoOrgPicker`, and `HarnessUserGroupPicker`, all populated straight from your
   Harness account with no proxy required. Before importing, replace:
   - `url: YOUR-PIPELINE-URL-HERE` → the pipeline URL from Step 2.
-  - ⚠️ **Watch the `orgId` casing.** The parameter is defined as `orgId`, but the
-    `inputset` currently sends `orgID: ${{ parameters.orgID }}` — that property doesn't
-    exist, so it resolves to null. It must read:
-    ```yaml
-    inputset:
-      projectId: ${{ parameters.projectId }}
-      orgId: ${{ parameters.orgId }}
-      userGroup: ${{ parameters.userGroup }}
-    ```
-    This has to match the pipeline's variable name (`orgId`) too, or the value won't
-    make it through even once the workflow side is fixed.
+
 
 ## Step 4 — Run It
 
